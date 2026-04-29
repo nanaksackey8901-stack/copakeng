@@ -88,6 +88,8 @@
             "npm run build",
             "mkdir -p /vercel/output/static",
             "cp -R public/. /vercel/output/static/",
+            "mkdir -p bootstrap/cache storage/framework/cache/data storage/framework/sessions storage/framework/views",
+            "chmod -R 775 bootstrap/cache storage",
             "php artisan migrate --force"
         ]
     },
