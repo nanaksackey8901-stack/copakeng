@@ -14,16 +14,17 @@
         "laravel/framework": "^13.0",
         "laravel/tinker": "^3.0",
         "livewire/flux": "^2.13.1",
-        "livewire/livewire": "^4.1"
+        "livewire/livewire": "^4.1",
+        "maatwebsite/excel": "^3.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.24",
         "laravel/pail": "^1.2.5",
+        "laravel/pao": "^1.0.6",
         "laravel/pint": "^1.27",
         "laravel/sail": "^1.53",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.9.3",
-        "nunomaduro/pao": "^1.0.3",
         "phpunit/phpunit": "^12.5.23"
     },
     "autoload": {
@@ -43,7 +44,7 @@
             "composer install",
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
             "@php artisan key:generate",
-            "@php artisan migrate",
+            "@php artisan migrate --force",
             "npm install",
             "npm run build"
         ],
@@ -83,14 +84,6 @@
         ],
         "pre-package-uninstall": [
             "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
-        ],
-        "vercel": [
-            "npm run build",
-            "mkdir -p /vercel/output/static",
-            "cp -R public/. /vercel/output/static/",
-            "mkdir -p bootstrap/cache storage/framework/cache/data storage/framework/sessions storage/framework/views /tmp/laravel/cache /tmp/laravel/storage/framework/cache/data /tmp/laravel/storage/framework/sessions /tmp/laravel/storage/framework/views /tmp/laravel/storage/logs",
-            "chmod -R 777 bootstrap/cache storage /tmp/laravel",
-            "APP_CONFIG_CACHE=/tmp/laravel/cache/config.php APP_SERVICES_CACHE=/tmp/laravel/cache/services.php APP_PACKAGES_CACHE=/tmp/laravel/cache/packages.php APP_ROUTES_CACHE=/tmp/laravel/cache/routes.php APP_EVENTS_CACHE=/tmp/laravel/cache/events.php LARAVEL_STORAGE_PATH=/tmp/laravel/storage php artisan migrate --force"
         ]
     },
     "extra": {
